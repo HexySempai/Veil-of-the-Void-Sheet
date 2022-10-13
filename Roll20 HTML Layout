@@ -1,17 +1,19 @@
 <div class="pagebody">
 <div class="title"><img src="https://static.wixstatic.com/media/d5a0b8_c338f5c3c50d42cf8b44e5a5c3e2e391~mv2.png/v1/fill/w_936,h_101,al_c,q_85,usm_0.66_1.00_0.01/Reforged%20Logo%20Spine.webp" alt="VEIL OF THE VOID ROLEPLAYING SYSTEM" width="80%" height="80%"></div>
 
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab1" value="1" checked="checked" /> <span class="sheet-tab">General</span>
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab2" value="2" /> <span class="sheet-tab">Gear</span>
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab3" value="3" /> <span class="sheet-tab">Leveling</span>
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab4" value="4" /> <span class="sheet-tab">Spells</span>
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab5" value="5" /> <span class="sheet-tab">Dossier</span>
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab6" value="6" /> <span class="sheet-tab">Company</span>
-<input type="radio" name="attr_tab" class="sheet-tab sheet-tab7" value="7" /> <span class="sheet-tab">...</span>
-<span></span>
+    <div class="sheet-navbuttons">
+        <button type="action" name="act_character" class="sheet-navbuttons" >Character</button>
+        <button type="action" name="act_gear" class="sheet-navbuttons" >Gear</button>
+        <button type="action" name="act_leveling" class="sheet-navbuttons" >Leveling</button>
+        <button type="action" name="act_spells" class="sheet-navbuttons" >Spells</button>
+        <button type="action" name="act_dossier" class="sheet-navbuttons" >Dossier</button>
+        <button type="action" name="act_company" class="sheet-navbuttons" >Company</button>
+        <button type="action" name="act_extra" class="sheet-navbuttons" >Extra</button>
+    </div>
 
-    <div class="global-container1 sheet-tab-content sheet-tab1">
-    
+    <input type="hidden" class="sheet-tabstoggle" name="attr_charTab" value="character" />
+
+    <div class="sheet-character global-container1">
         <div class="charsec1A">
             
             <input type="text" name="attr_Char_Name" placeholder="Character Name" />
@@ -88,7 +90,8 @@
                 <option>Dollars</option>
             </select>
             <div class="credits span3">Class Resource:
-                <input type="text" name="attr_Ccresource" class="40text" placeholder="5"/> <input type="text" name="attr_Ccresmax" class="40text" placeholder="Max"/>
+                <input type="text" name="attr_Ccresource" class="40text" placeholder="5"/>
+                <input type="text" name="attr_Ccresmax" class="40text" placeholder="Max"/>
                 <input type="text" name="attr_Ccrescustom" class="75text" placeholder="Custom"/>
                 <select name="cresouce" style="width: 110px">
                     <option>None</option>
@@ -98,7 +101,7 @@
                     <option>Mimic Points</option>
                     <option>Fighter Points</option>
                     <option>Custom</option>
-                <select>
+                </select>
             </div>
         </div>
         
@@ -658,14 +661,14 @@
                 </div>    
             </div>
         </div>
-    
     </div>
 
-
-
-    <div class="global-container2 sheet-tab-content sheet-tab2">
+    </div>
+    
+    
+    
+    <div class="sheet-gear global-container2">
         <div class="gearsec1A">
-            <h3>Inventory</h3>
             
             
             
@@ -2060,10 +2063,9 @@
     
     
     
-    <div class="global-container3 sheet-tab-content sheet-tab3">
+    <div class="sheet-leveling global-container3">
         <div class="levelsec1A repeatscroll">
             <div>
-                <h3>Base Class:</h3>
                 <select name="attr_classbase">
                     <option value="1">---------</option>
                     <option value="2">Architect</option>
@@ -2606,8 +2608,7 @@
     
     
     
-    <div class="global-container4 sheet-tab-content sheet-tab4">
-        
+    <div class="sheet-spells global-container4">
         <div class="spellsec1A">    
             <input type="text" class="200text" placeholder="Spellcasting Class" />
             <label class="tentext">Maximum Spellcasting Level</label>
@@ -2760,8 +2761,8 @@
     
     
     
-    <div class="global-container5 sheet-tab-content sheet-tab5">
-       <div class="bio1A">
+    <div class="sheet-dossier global-container5">
+        <div class="bio1A">
            <input type="text" class="75text span2" placeholder="Pronouns" name="attr_pronouns" />
            <input type="text" class="200text span6" placeholder="Character Name" name="attr_Char_Name" />
            <label class="tentext">Age:</label>
@@ -2822,7 +2823,8 @@
     </div>
     
     
-    <div class="global-container6 sheet-tab-content sheet-tab6">
+    
+    <div class="sheet-company global-container6">
         <div class="party1A">
         
         <div>
@@ -3248,18 +3250,19 @@
     
     
     
-    <div class="global-container7 sheet-tab-content sheet-tab7">    
+    <div class="sheet-extra global-container7">    
         Tools and More
-        
-        
-        
-        
-        
-        
-        
-        
-        
     </div>
-    
+
+    <script type="text/worker">
+        const buttonlist = ["character","gear","leveling","spells","dossier","company","extra"];
+        buttonlist.forEach(button => {
+            on(`clicked:${button}`, function() {
+                setAttrs({
+                    charTab: button
+                });
+            });
+        });
+    </script>
     
 </div>
