@@ -196,7 +196,7 @@
   grid-column: 1/2;
   grid-row: 1/2;
   display: grid;
-  grid-template-rows: 30px 30px 1fr;
+  grid-template-rows: 30px 500px 1fr;
   padding: 5px;
   background-color: #ccc;
 }
@@ -302,23 +302,16 @@
 .sheet-spellcell{
     display: grid;
     grid-template-columns: 105px 15px 25px 50px 15px 30px 25px 15px 80px;
-    grid-template-rows: 30px 30px 30px 30px 40px 210px;
+    grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
     border: double white;
     padding: 2px;
     background-color: #ddd;
 }
 
-.sheet-spellsubcell1{
-    display: grid;
-    grid-template-columns: 20px 25px 60px;
-    grid-template-rows: 30px;
-    padding: 2px;
-}
-
 .sheet-spellsubcell2{
     display: grid;
-    grid-template-columns: 50px 100px;
-    grid-template-rows: 30px 30px;
+    grid-template-columns: 50px;
+    grid-template-rows: 50px 15px 50px 100px
     padding: 2px;
 }
 
@@ -712,7 +705,11 @@
 }
 
 .sheet-centertext{
-    align-self: center;
+    text-align: center;
+}
+
+.sheet-righttext{
+    text-align: right;
 }
 
 .sheet-endtext{
@@ -884,8 +881,8 @@ button[type=roll].sheet-cskill{
 }
 
 .sheet-spellbox{
-    width: 300px;
-	height: 200px;
+    width: 350px;
+	height: 175px;
 	resize: none;
 	overflow-y: scroll;
 }
@@ -907,6 +904,14 @@ button[type=roll].sheet-cskill{
 
 .sheet-biolargebox{
     width: 500px;
+	height: 200px;
+	resize: none;
+	border: 3px;
+	overflow-y: scroll;
+}
+
+.sheet-bioxlargebox{
+    width: 700px;
 	height: 200px;
 	resize: none;
 	border: 3px;
@@ -1419,10 +1424,11 @@ input.sheet-fuelbar[value="11"] ~ div.sheet-fuelbar::before {
 
 
 /*this shows the race traits content when the appropriate input field is selected*/
-.charsheet input.sheet-spellaoede0:checked ~ div.sheet-spellareahidden-emptyaoe,
-.charsheet input.sheet-spellaoede1:checked ~ div.sheet-spellareahidden-lineaoe,
-.charsheet input.sheet-spellaoede2:checked ~ div.sheet-spellareahidden-areaaoe,
-.charsheet input.sheet-spellaoede3:checked ~ div.sheet-spellareahidden-coneaoe,
+.charsheet input.sheet-spellaoede0:checked ~ div.sheet-spellareahidden-selfaoe,
+.charsheet input.sheet-spellaoede1:checked ~ div.sheet-spellareahidden-rangeaoe,
+.charsheet input.sheet-spellaoede2:checked ~ div.sheet-spellareahidden-lineaoe,
+.charsheet input.sheet-spellaoede3:checked ~ div.sheet-spellareahidden-areaaoe,
+.charsheet input.sheet-spellaoede4:checked ~ div.sheet-spellareahidden-coneaoe,
  {
   display: grid;
   grid: 30px / 50px 15px 50px 100px
@@ -1442,11 +1448,11 @@ input.sheet-fuelbar[value="11"] ~ div.sheet-fuelbar::before {
 
 
 
-.charsheet input.sheet-aoebox:not(:checked) ~ div.sheet-spellsubcell2{
+.charsheet input.sheet-aoebox:not(:checked) ~ div.sheet-spellsec2A{
     display: none;
 }
 
-.charsheet input.sheet-aoebox:checked ~ div.sheet-spellsubcell2,{
+.charsheet input.sheet-aoebox:checked ~ div.sheet-spellsec2A,{
     display: block;
 }
 /*----------- Spell AOE Check -----------*/
