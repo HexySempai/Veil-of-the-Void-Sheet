@@ -8,7 +8,7 @@
         <button type="action" name="act_spells" class="sheet-navbuttons" >Spells</button>
         <button type="action" name="act_dossier" class="sheet-navbuttons" >Dossier</button>
         <button type="action" name="act_company" class="sheet-navbuttons" >Company</button>
-        <button type="action" name="act_extra" class="sheet-navbuttons" >Extra</button>
+        <button type="action" name="act_extra" class="sheet-navbuttons" >Notes</button>
     </div>
 
     <input type="hidden" class="sheet-tabstoggle" name="attr_charTab" value="character" />
@@ -72,11 +72,19 @@
         <div class="charsec1C">
             
             Movement: <input type="number" name="attr_Move" value="6" min="0" max="50"/> squares <br/>
-            Extra Movement: <input type="number" name="attr_ExMove" value="0" min="0" max="50"/> <br/>
+            <select name="attr_charexmove" class='optslist'>
+                <option>None</option>
+                <option>Extra Movement</option>
+                <option>Fly</option>
+                <option>Climb</option>
+                <option>Swim</option>
+                <option>Burrow</option>
+            </select> <input type="number" name="attr_charExMoveNum" value="0" min="0" max="50"/> sqr.<br/>
     		Initiative: <button type="roll" value="/roll 1d6 + @{Finesse} + @{init6} &{tracker}" name="roll_AP"> </button> 
     		    + <input type="number" name="attr_init6" value="0" /> 
     	    <br/>
-            Determination: <input type="number" name="attr_DetermPs" value="0" min="0" max="20"/>
+            Determination: <input type="number" name="attr_DetermPs" value="0" min="0" max="20"/></br/>
+            Attacks: <input type="number" name="attr_AttNum" value="0" min="0" max="20"/>
         </div>
         
         <div class="charsec2A">
@@ -176,7 +184,7 @@
             <span></span>
             <span></span>
     		<label>Armor Level:</label>
-                <select name="attr_Armor" class='optslist' style='width: 100px'>
+                <select name="attr_Armor" class='optslist span2' style='width: 100px'>
                    <option value = "0">None</option>
                    <option value = "2">Light [2]</option>
                    <option value = "3">Medium [3]</option>
@@ -184,9 +192,7 @@
                    <option value = "5">Reinforced [5]</option>
                    <option value = "6">Fortified [6]</option>
                 </select>
-            <span></span>
-            <span></span>
-            <input type="text" name="attr_Cprottype" class="75text" placeholder="type 20%"/>
+            <input type="text" name="attr_Cprottype" class="100text" placeholder="type 20%"/>
          </div>
         
         <div class="charsec2C">
@@ -684,46 +690,46 @@
                     <option value="8">Trinket</option>
                     </select>
 
-                      <input class="gear gear0" type="checkbox" name="attr_gear" value="0"><!-- Currency-->                    
-                      <input class="gear gear1" type="checkbox" name="attr_gear" value="1"><!-- Armor-->
-                      <input class="gear gear2" type="checkbox" name="attr_gear" value="2"><!-- Weapon -->
-                      <input class="gear gear3" type="checkbox" name="attr_gear" value="3"><!-- Tool -->
-                      <input class="gear gear4" type="checkbox" name="attr_gear" value="4"><!-- Ammo -->
-                      <input class="gear gear5" type="checkbox" name="attr_gear" value="5"><!-- Container -->
-                      <input class="gear gear6" type="checkbox" name="attr_gear" value="6"><!-- Artifact -->
-                      <input class="gear gear7" type="checkbox" name="attr_gear" value="7"><!-- Cybernetics -->
-                      <input class="gear gear8" type="checkbox" name="attr_gear" value="8"><!-- Trinket -->
+                        <input class="gear gear0" type="checkbox" name="attr_gear" value="0"><!-- Currency-->                    
+                        <input class="gear gear1" type="checkbox" name="attr_gear" value="1"><!-- Armor-->
+                        <input class="gear gear2" type="checkbox" name="attr_gear" value="2"><!-- Weapon -->
+                        <input class="gear gear3" type="checkbox" name="attr_gear" value="3"><!-- Tool -->
+                        <input class="gear gear4" type="checkbox" name="attr_gear" value="4"><!-- Ammo -->
+                        <input class="gear gear5" type="checkbox" name="attr_gear" value="5"><!-- Container -->
+                        <input class="gear gear6" type="checkbox" name="attr_gear" value="6"><!-- Artifact -->
+                        <input class="gear gear7" type="checkbox" name="attr_gear" value="7"><!-- Cybernetics -->
+                        <input class="gear gear8" type="checkbox" name="attr_gear" value="8"><!-- Trinket -->
                     
                     
                     <div class="geartraits_currency repeatscroll">
-                    <div class="gearcredits">
-                        <input type="text" name="attr_Ccredits" class="200text"/>
-                        <select name="pricurrency" style="width: 100px">
-                            <option>Credits</option>
-                            <option>Gold</option>
-                            <option>Dollars</option>
-                        </select>
-                    </div>
-                    <div class="gearresource">
-                        <input type="text" name="attr_Ccresource" class="200text"/>
-                        <select name="cresouce" style="width: 100px">
-                            <option>Scrap</option>
-                            <option>Battle Charges</option>
-                            <option>Essence</option>
-                            <option>Mimic Points</option>
-                            <option>Fighter Points</option>
-                        </select>
-                    </div>
-                          <fieldset class="repeating_currency">
+                        <div class="gearcredits">
+                            <input type="text" name="attr_Ccredits" class="200text"/>
+                            <select name="pricurrency" style="width: 100px">
+                                <option>Credits</option>
+                                <option>Gold</option>
+                                <option>Dollars</option>
+                            </select>
+                        </div>
+                        <div class="gearresource">
+                            <input type="text" name="attr_Ccresource" class="200text"/>
+                            <select name="cresouce" style="width: 100px">
+                                <option>Scrap</option>
+                                <option>Battle Charges</option>
+                                <option>Essence</option>
+                                <option>Mimic Points</option>
+                                <option>Fighter Points</option>
+                            </select>
+                        </div>
+                        <fieldset class="repeating_currency">
                             <div class="repeatgcurrency">  
                             <input type="number" name="attr_gcurrency" class="bignumber" value="0" min="0"/>
                             <input type="text" name="currencyname" class="200text" placeholder="Credits">
                             </div>
-                          </fieldset>
+                        </fieldset>
                     </div>
                     
-                      <div class="geartraits_armor repeatscroll">
-                          <fieldset class="repeating_armor">
+                    <div class="geartraits_armor repeatscroll">
+                        <fieldset class="repeating_armor">
                             <div class="repeatgarmor">
                             <label>Armor Class:</label>
                             <select name="attr_garmorclass" style="width: 90px" class="span2">
@@ -749,11 +755,11 @@
                             <textarea name="attr_gweapondetails" class="shortdetailbox span2"> </textarea>
                             </div>
                             <hr>
-                          </fieldset>
-                      </div>
+                        </fieldset>
+                    </div>
                     
                     <div class="geartraits_weapon repeatscroll">
-                          <fieldset class="repeating_gweapons">
+                        <fieldset class="repeating_gweapons">
                             <div class="repeatgweapons">
                                 
                                 <input type="text" name="attr_gweaponname" class="200text span5" placeholder="Weapon Name" />
@@ -823,8 +829,8 @@
                         </fieldset>
                     </div>
                     
-                      <div class="geartraits_tool repeatscroll">
-                          <fieldset class="repeating_tool">
+                    <div class="geartraits_tool repeatscroll">
+                        <fieldset class="repeating_tool">
                             <div class="repeatgtool">  
                             <label class="span2">Tool Name:</label>
                             <input type="text" name="attr_gtoolname" class="200text span7"/>
@@ -844,11 +850,11 @@
                             <textarea name="attr_gtooldetails" class="shortdetailbox span8"> </textarea>
                             </div>
                             <hr>
-                          </fieldset>
-                      </div>
+                        </fieldset>
+                    </div>
                     
-                      <div class="geartraits_ammo repeatscroll">
-                          <fieldset class="repeating_ammo">
+                    <div class="geartraits_ammo repeatscroll">
+                        <fieldset class="repeating_ammo">
                             <div class="repeatgammo">
                             <label class="span2">Ammo Type:</label>
                             <input type="text" name="attr_gammoname" class="100text span3"/>
@@ -857,11 +863,11 @@
                             <label>Clip Quantity:</label>
                             <input type="number" name="attr_gammoclipcount" class="customweapon" value="0" min="0" max="99"/>
                             </div>
-                          </fieldset>
-                      </div>
+                        </fieldset>
+                    </div>
                     
-                      <div class="geartraits_container repeatscroll">
-                          <fieldset class="repeating_container">
+                    <div class="geartraits_container repeatscroll">
+                        <fieldset class="repeating_container">
                             <div class="repeatgcontainer">  
                             <input type="number" name="attr_gcontainerquant" class="customweapon" value="0" min="0" max="99"/>
                             <input type="text" name="attr_gcontainername" class="100text span4" value="Crate/Barrel"/>
@@ -871,12 +877,12 @@
                             <textarea name="attr_gcontainerdetails" class="shortdetailbox span3"> </textarea>  
                             </div>
                             <hr>
-                          </fieldset>
+                        </fieldset>
 
-                      </div>
+                    </div>
                     
-                      <div class="geartraits_artifact repeatscroll">
-                            <fieldset class="repeating_artifact">
+                    <div class="geartraits_artifact repeatscroll">
+                        <fieldset class="repeating_artifact">
                             <div class="repeatgartifact">    
                              <select name="attr_gartifactrarity" style="width: 100px" class="span9">
                                 <option>Mundane</option>
@@ -902,11 +908,11 @@
                             <textarea name="attr_gartdetails" class="shortdetailbox span8"> </textarea> 
                             </div>
                             <hr>
-                            </fieldset>
-                      </div>
+                        </fieldset>
+                    </div>
                     
-                      <div class="geartraits_cybernetics repeatscroll">
-                          <fieldset class="repeating_cyber">
+                    <div class="geartraits_cybernetics repeatscroll">
+                        <fieldset class="repeating_cyber">
                             <div class="repeatgcyber">  
                             <label class="span2">Cybernetics Model:</label>
                             <label class="smalltext">Damaged</label>
@@ -914,14 +920,14 @@
                             <input type="text" name="attr_cybername" class="span4" />
                             <label>Details:</label>
                             <textarea name="attr_gcyberdetails" class="shortdetailbox span3"> </textarea>
-                          </div>
-                          <hr>
-                          </fieldset>
+                            </div>
+                        <hr>
+                        </fieldset>
                         
-                      </div>
+                    </div>
                     
-                      <div class="geartraits_trinket repeatscroll">
-                          <fieldset class="repeating_trink">
+                    <div class="geartraits_trinket repeatscroll">
+                        <fieldset class="repeating_trink">
                             <div class="repeatgtrink">
                             <label>Name:</label>
                             <input type="text" name="attr_trinketname" class="span2" />
@@ -929,9 +935,10 @@
                             <textarea name="attr_gtrinkdetails" class="shortdetailbox span2"> </textarea>
                             </div>
                             <hr>
-                          </fieldset>
-                    
-                </div>
+                        </fieldset>
+                        
+                    </div>
+                
        
        
        
@@ -2666,19 +2673,19 @@
                     <option>Magus</option>
                     <option>Superlative</option>
                 </select>
-                <label class="tentext">Duration</label>
-                <input type="number" name="attr_spelldurationnumber" value="0" min="0" class="span2" />
-                <select name="attr_spelldurationselect" style="width: 90px" class="span3">
-                    <option>Rounds</option>
+                <label class="tentext">Cast time</label>
+                <input type="number" name="attr_spellcasttime" value="0" min="0" class="span2" />
+                <select name="attr_spellcastselect" style="width: 90px" class="span3">
+                    <option>None</option>
+                    <option>Instant</option>
+                    <option>Extra Action</option>
+                    <option>Channel</option>
                     <option>Seconds</option>
                     <option>Minutes</option>
                     <option>Hours</option>
                     <option>Days</option>
-                    <option>Weeks</option>
-                    <option>Months</option>
-                    <option>Years</option>
                 </select>
-                  <select name="attr_spelldifficultyselect" style="width: 100px" class="span3">
+                <select name="attr_spelldifficultyselect" style="width: 100px" class="span3">
                     <option>-----</option>
                     <option>None</option>
                     <option>Attack</option>
@@ -2692,10 +2699,11 @@
                     <option>Unforgiving[9]</option>
                     <option>Impossible [12]</option>
                     <option>Impossible +</option>
-                  </select>
-                <label class="tentext">Cooldown</label>
-                <input name="attr_spellcoolnumber" type="number" value="0" min="0" class="span2"/>
-                <select name="attr_spellcoolselect" style="width: 90px" class="span3">
+                </select>
+                <label class="tentext">Duration</label>
+                <input type="number" name="attr_spelldurationnumber" value="0" min="0" class="span2" />
+                <select name="attr_spelldurationselect" style="width: 90px" class="span3">
+                    <option>No Duration</option>
                     <option>Rounds</option>
                     <option>Seconds</option>
                     <option>Minutes</option>
@@ -2709,51 +2717,98 @@
                     <option>Active</option>
                     <option>Inactive</option>
                 </select>
-                
+                <span></span>
+                <span></span>
+                <label class="tentext">Cooldown</label>
+                <input name="attr_spellcoolnumber" type="number" value="0" min="0" class="span2"/>
+                <select name="attr_spellcoolselect" style="width: 90px" class="span3">
+                    <option>Rounds</option>
+                    <option>Seconds</option>
+                    <option>Minutes</option>
+                    <option>Hours</option>
+                    <option>Days</option>
+                    <option>Weeks</option>
+                    <option>Months</option>
+                    <option>Years</option>
+                </select>
+                <select name="attr_svt" style="width: 100px">
+                    <option value="0">None</option>
+                    <option value="@{Power}">Power</option>
+                    <option value="@{Finesse}">Finesse</option>
+                    <option value="@{Vitality}">Vitality</option>
+                    <option value="@{Mentality}">Mentality</option>
+                    <option value="@{Judgement}">Judgement</option>
+                    <option value="@{Charm}">Charm</option>
+                </select>
+                <label>+</label>
+                <select name="attr_sbtype" class="span2" style="width: 75px">
+                    <option value="0 + @{SB}">0</option>
+                    <option value="1 + @{SB}">1</option>
+                    <option value="d3 + @{SB}">D3</option>
+                    <option value="d6 + @{SB}">D6</option>
+                    <option value="d6 + d3 + @{SB}">D9</option>
+                    <option value="2d6 + @{SB}">2d6</option>
+                    <option value="3d6 + @{SB}">3d6</option>
+                    <option value="4d6 + @{SB}">4d6</option>
+                    <option value="5d6 + @{SB}">5d6</option>
+                    <option value="6d6 + @{SB}">6d6</option>
+                    <option value="7d6 + @{SB}">7d6</option>
+                    <option value="8d6 + @{SB}">8d6</option>
+                    <option value="9d6 + @{SB}">9d6</option>
+                    <option value="10d6 + @{SB}">10d6</option>
+                    <option value="11d6 + @{SB}">11d6</option>
+                    <option value="12d6 + @{SB}">12d6</option>
+                    <option value="13d6 + @{SB}">13d6</option>
+                    <option value="14d6 + @{SB}">14d6</option>
+                    <option value="15d6 + @{SB}">15d6</option>
+                </select>
+                <input type="number" name="attr_SB" class="customspell span2" value="0" min="0" max="99"/>
+                <button type="roll" value="/roll @{sbtype} + @{svt}" name="roll_spells" class="blank-roll-button span3">Damage</button>
+                <input type="text" name="attr_spellrange" class="100text" placeholder="range" />
+                <label class="centertext">AOE:</label>
+                <span></span>
+                <select class="span2" style="width: 60px" name="attr_spellareaselect">
+                    <option value="0">Self</option>
+                    <option value="1">Range</option>
+                    <option value="2">Line</option>
+                    <option value="3">Area</option>
+                    <option value="4">Cone</option>
+                </select>
+                <input class="spellaoeselect spellaoede0" type="checkbox" name="attr_spellareaselect" value="0"> <!-- Self -->
+                <input class="spellaoeselect spellaoede1" type="checkbox" name="attr_spellareaselect" value="1"> <!-- Range -->
+                <input class="spellaoeselect spellaoede2" type="checkbox" name="attr_spellareaselect" value="2"> <!-- Line -->
+                <input class="spellaoeselect spellaoede3" type="checkbox" name="attr_spellareaselect" value="3"> <!-- Area -->
+                <input class="spellaoeselect spellaoede4" type="checkbox" name="attr_spellareaselect" value="4"> <!-- Cone -->
                     
-                <input class="aoebox centertext" type="checkbox" name="attr_aoecheck" value="1" />
-                
-                <label class="centertext tentext">AOE</label>
-                
-                <div class="spellsubcell2">
-                    <select class="span2" style="width: 80px" name="attr_spellareaselect">
-                        <option value="0">---</option>
-                        <option value="1">Line</option>
-                        <option value="2">Area</option>
-                        <option value="3">Cone</option>
-                    </select>
-                    
-                    <input class="spellaoeselect spellaoede0" type="checkbox" name="attr_spellareaselect" value="0"> <!-- Line -->
-                    <input class="spellaoeselect spellaoede1" type="checkbox" name="attr_spellareaselect" value="1"> <!-- Line -->
-                    <input class="spellaoeselect spellaoede2" type="checkbox" name="attr_spellareaselect" value="2"> <!-- Area -->
-                    <input class="spellaoeselect spellaoede3" type="checkbox" name="attr_spellareaselect" value="3"> <!-- Cone -->
-                    
-                    <div class="spellareahidden-emptyaoe">
-                        <span></span>
-                    </div>
-                    
-                    <div class="spellareahidden-lineaoe">
-                        <input type="number" value="0" min="0" />
-                        <input type="text" class="75text" placeholder="Squares" />
-                    </div>
-                    
-                    <div class="spellareahidden-areaaoe">
-                        <input class="aoearearange" type="number" value="0" min="0" />
-                        <label>X</label>
-                        <input class="aoearearange" type="number" value="0" min="0" />
-                        <input type="text" class="75text" placeholder="Squares" />
-                    </div>
-                    
-                    <div class="spellareahidden-coneaoe">
-                        <input type="number" value="0" min="0" />
-                        <input type="text" class="75text" placeholder="Squares" />
-                    </div>
-                            
+                <div class="spellareahidden-selfaoe">
+                    <span></span>
                 </div>
+                
+                 <div class="spellareahidden-rangeaoe">
+                    <input type="number" value="0" min="0" />
+                    <label class="tentext">Squares</label>
+                </div>
+                
+                <div class="spellareahidden-lineaoe">
+                    <input type="number" value="0" min="0" />
+                    <label class="tentext">Squares</label>
+                </div>
+                    
+                <div class="spellareahidden-areaaoe">
+                    <input class="aoearearange" type="number" value="0" min="0" />
+                    <label>X</label>
+                    <input class="aoearearange" type="number" value="0" min="0" />
+                    <label class="tentext">Squares</label>
+                </div>
+                    
+                <div class="spellareahidden-coneaoe">
+                    <input type="number" value="0" min="0" />
+                    <label class="tentext">Squares</label>
+                </div>
+                            
                         
-                        
-                        <label class="tentext endtext span9">Spell Description:</label>
-                        <textarea class="spellbox" name="attr_spelldets"> </textarea>
+                <label class="tentext endtext span9">Spell Description:</label>
+                <textarea class="spellbox" name="attr_spelldets"> </textarea>
             </div>
             </fieldset>
         </div>
@@ -2766,7 +2821,7 @@
            <input type="text" class="75text span2" placeholder="Pronouns" name="attr_pronouns" />
            <input type="text" class="200text span6" placeholder="Character Name" name="attr_Char_Name" />
            <label class="tentext">Age:</label>
-           <input type="number" name="attr_age" value="0" min="0" />
+           <input type="text" name="attr_age" class="100text" />
            <select style="width: 120px" class="span4" >
                <option>
                    Years
@@ -2782,7 +2837,7 @@
            </select>
            <input type="text" name="attr_species" class="200text span8" placeholder="Species" />
            <label class="tentext">Weight:</label>
-           <input type="number" name="attr_weight" value="0" min="0" />
+           <input type="text" name="attr_weight" class="100text" />
            <select style="width: 90px" class="span3">
                <option>
                    Pounds
@@ -2798,7 +2853,7 @@
            </select>
            <input type="text" name="attr_ancestry" class="200text span8" placeholder="Ancestry Path" />
            <label class="tentext">Height:</label>
-           <input type="number" name="attr_height" value="0" min="0" />
+           <input type="text" name="attr_height" class="100text" />
            <select style="width: 80px" class="span4" >
                <option>
                    Feet
@@ -2951,7 +3006,7 @@
                                             <option>Burrow</option>
                                         </select>
                                         <span></span>
-                                        <input type="number" name="attr_crmxhp" value="0" min="0" />
+                                        <input type="number" name="attr_crxmove" value="0" min="0" />
                             		</div>
                             		<div class="statcell">
                             			<div class="crweapons span8">
@@ -2981,7 +3036,7 @@
                             			    <label>+</label>
                                             <input type="number" name="attr_crWB1" class="customweapon" value="0" min="0" max="99"/>
                                             <label>+</label>
-                                            <select name="attr_cwvt" style="width: 70px">
+                                            <select name="attr_cwvt1" style="width: 70px">
                                                 <option value="0">None</option>
                                                 <option value="@{crPow}">Power</option>
                                                 <option value="@{crFin}">Finesse</option>
@@ -2990,7 +3045,7 @@
                                                 <option value="@{crJud}">Judgement</option>
                                                 <option value="@{crCha}">Charm</option>
                                             </select>
-                                            <button type="roll" value="/roll @{crtype1} + @{cwvt}" name="roll_weapons" class="blank-roll-button">Damage</button>
+                                            <button type="roll" value="/roll @{crtype1} + @{cwvt1}" name="roll_weapons" class="blank-roll-button">Damage</button>
                             			    <input type="text" name="attr_crweapn1range" class="50text" placeholder="Range" />
                             			    
                             			    <input type="text" name="attr_crweapn2" class="100text" placeholder="Weapon" />
@@ -3019,7 +3074,7 @@
                             			    <label>+</label>
                                             <input type="number" name="attr_crWB2" class="customweapon" value="0" min="0" max="99"/>
                                             <label>+</label>
-                                            <select name="attr_cwvt" style="width: 70px">
+                                            <select name="attr_cwvt2" style="width: 70px">
                                                 <option value="0">None</option>
                                                 <option value="@{crPow}">Power</option>
                                                 <option value="@{crFin}">Finesse</option>
@@ -3028,7 +3083,7 @@
                                                 <option value="@{crJud}">Judgement</option>
                                                 <option value="@{crCha}">Charm</option>
                                             </select>
-                                            <button type="roll" value="/roll @{crtype2} + @{cwvt}" name="roll_weapons" class="blank-roll-button">Damage</button>
+                                            <button type="roll" value="/roll @{crtype2} + @{cwvt2}" name="roll_weapons" class="blank-roll-button">Damage</button>
                             			    <input type="text" name="attr_crweapn2range" class="50text" placeholder="Range" />
                             			    
                             			    <input type="text" name="attr_crweapn3" class="100text" placeholder="Weapon" />
@@ -3057,7 +3112,7 @@
                             			    <label>+</label>
                                             <input type="number" name="attr_crWB3" class="customweapon" value="0" min="0" max="99"/>
                                             <label>+</label>
-                                            <select name="attr_cwvt" style="width: 70px">
+                                            <select name="attr_cwvt3" style="width: 70px">
                                                 <option value="0">None</option>
                                                 <option value="@{crPow}">Power</option>
                                                 <option value="@{crFin}">Finesse</option>
@@ -3066,14 +3121,14 @@
                                                 <option value="@{crJud}">Judgement</option>
                                                 <option value="@{crCha}">Charm</option>
                                             </select>
-                                            <button type="roll" value="/roll @{crtype3} + @{cwvt}" name="roll_weapons" class="blank-roll-button">Damage</button>
+                                            <button type="roll" value="/roll @{crtype3} + @{cwvt3}" name="roll_weapons" class="blank-roll-button">Damage</button>
                             			    <input type="text" name="attr_crweapn3range" class="50text" placeholder="Range" />
                             			</div>
                             		</div>
                             		<div class="crskills">
-                            		    <input type="text" name="attr_crskill1" class="100text" placeholder="Skill" />
+                            		    <input type="text" name="attr_crskill1" class="100text" placeholder="Weapon Master" />
                             		    <label>SP:</label>
-                            		    <input type="number" name="attr_crsk1" value="0" min="0" />
+                            		    <input type="number" name="attr_crsk1" value="2" min="2" />
                             		    |
                             		    <input type="text" name="attr_crskill2" class="100text" placeholder="Skill" />
                             		    <label>SP:</label>
@@ -3161,7 +3216,7 @@
                             	</div>
                             </div>
                             <div class="crabilities span2">
-                                <textarea class="biolargebox" name="attr_creatureabil" placeholder="Creature Abilities"></textarea>
+                                <textarea class="bioxlargebox" name="attr_creatureabil" placeholder="Creature Abilities"></textarea>
                             </div>
                         </div>
                     </fieldset>
@@ -3250,8 +3305,12 @@
     
     
     
-    <div class="sheet-extra global-container7">    
-        Tools and More
+    <div class="sheet-extra global-container7">
+        <label>Extra Typing Space and Session Notes</label>    
+        <textarea class="bioxlargebox" name="attr_notes1" placeholder="Extra Features"></textarea>
+        <textarea class="bioxlargebox" name="attr_notes2" placeholder="Session Notes"></textarea>
+        <textarea class="bioxlargebox" name="attr_notes3" placeholder="Text"></textarea>
+        <textarea class="bioxlargebox" name="attr_notes4" placeholder="Text"></textarea>
     </div>
 
     <script type="text/worker">
